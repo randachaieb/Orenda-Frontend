@@ -4,12 +4,12 @@
   "private": true,
   "secure": false,
   "dependencies": {
-    "3d-react-carousal": "^4.0.1",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "3d-react-carousal": "^4.0.1",
     "antd": "^4.16.13",
     "axios": "^0.21.1",
     "bootstrap": "5.0.2",
@@ -23,7 +23,7 @@
     "react-loading-skeleton": "^2.2.0",
     "react-multi-carousel": "^2.6.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^3.4.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
