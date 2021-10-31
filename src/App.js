@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./App.css";
 
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, Router, Switch } from "react-router-dom";
 import Signin from "./components/authentification/signin";
 import Signup from "./components/authentification/signup";
 import Header from "./components/header/header";
@@ -19,15 +19,21 @@ import Search from "./pages/Search";
 
 function App() {
   const authContext = useContext(AuthContext);
-  return authContext.loading ? null : (
+  return (
+    // authContext.loading ? null : (
     <div>
+      {/* !there is an error in the header */}
       <Header />
       <Switch>
-        <h1>texsdrg</h1>
         <Route exact path="/Acceuil" component={Acceuil} />
         <Route exact path="/Search" component={Search} />
         <Route exact path="/">
-          {authContext.auth.token ? <Home /> : <Redirect to="/signin" />}
+          {authContext.auth.token ? (
+            <Home />
+          ) : (
+            // <Home />
+            <Redirect to="/signin" />
+          )}
         </Route>
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/signin">
@@ -44,12 +50,4 @@ function App() {
   );
 }
 
-function AppWithStore() {
-  return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  );
-}
-
-export default AppWithStore;
+export default App;

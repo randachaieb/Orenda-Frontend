@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
 import axios from "axios";
 import avatar from "../../assets/avatar.png";
