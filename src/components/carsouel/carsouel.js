@@ -89,7 +89,7 @@ function Carsouel() {
        
       </Carousel>
         <div className='add'>
-                <button type='submit' className='add-btn'><i class="bi bi-plus-circle-fill"></i> Slide</button>  
+                <button type='submit' className='add-btn'><i className="bi bi-plus-circle-fill"></i> Slide</button>  
           </div>
     </div>
     )

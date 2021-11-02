@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Carsouel from "../components/carsouel/carsouel";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import axios from 'axios'
+import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     root: {
         "& > *": {
@@ -50,7 +50,7 @@ function Home() {
         // Met à jour le titre du document via l’API du navigateur
         axios.get('http://localhost:5000/api/v1/categories/PlaceCategories')
             .then(response => {
-                console.log('places', response.data)
+                //console.log('places', response.data)
 
                 setCategories(response.data)
                 setCategoriesFilter(response.data)
@@ -299,9 +299,9 @@ function Home() {
                             <PopupForm handleClose={handleClose} />
 
                         </div>
-                        <div class="container horizontal-scrollable" >
-                            <div class="container ">
-                                <div class="row">
+                        <div className="container horizontal-scrollable" >
+                            <div className="container ">
+                                <div className="row">
                                     <div className={classes.root}>
                                         <b style={{ fontSize: "16px" }}> Places </b>
                                         <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
@@ -321,9 +321,9 @@ function Home() {
                         {
                             CategoriesPlaceSub ?
 
-                                <div class="container horizontal-scrollable" >
-                                    <div class="container ">
-                                        <div class="row">
+                                <div className="container horizontal-scrollable" >
+                                    <div className="container ">
+                                        <div className="row">
                                             <div className={classes.root}>
                                                 <b style={{ fontSize: "16px" }}> Sub Places </b>
                                                 <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
@@ -338,9 +338,9 @@ function Home() {
                                 </div> : ''
 
                         }
-                        <div class="container horizontal-scrollable">
-                            <div class="container ">
-                                <div class="row">
+                        <div className="container horizontal-scrollable">
+                            <div className="container ">
+                                <div className="row">
                                     <div className={classes.root}>
                                         <b style={{ fontSize: "16px" }}> Offers </b>
                                         <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
@@ -361,15 +361,15 @@ function Home() {
                         {
                             CategoriesOfferSub ?
 
-                                <div class="container horizontal-scrollable" >
-                                    <div class="container ">
-                                        <div class="row">
+                                <div className="container horizontal-scrollable" >
+                                    <div className="container ">
+                                        <div className="row">
                                             <div className={classes.root}>
                                                 <b style={{ fontSize: "16px" }}> Sub Offers </b>
                                                 <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
                                                     {CategoriesOfferSub.map((data) => (
 
-                                                        <Button value={data._id} >{data.name}</Button>
+                                                        <Button key={data.name} value={data._id} >{data.name}</Button>
                                                     ))}
                                                 </ButtonGroup>
                                             </div>

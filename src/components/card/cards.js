@@ -59,13 +59,13 @@ export default function Cards(props) {
 
             .then((res) => {
                 setLoading(true)
-                console.log('------------')
-                console.log(res.data)
-                const data = res.data.sort((c1, c2) => {
+                //console.log('------------')
+                //console.log(res.data)
+                /*const data = res.data.sort((c1, c2) => {
                     return c1.user?.followers.length - c2.user?.followers.length
-                })
+                })*/
+                const data = res.data
                 setCard(data)
-
 
 
             }).catch(err => err.message)
@@ -82,13 +82,12 @@ export default function Cards(props) {
     const items = card.slice(0, limit);
 
 
-    console.log(search)
+    //console.log(search)
     return (
-        <div className=''>
+        <div >
             <div className='items-c'>
 
                 <div className='cards-display'>
-                    {console.log('carddsss')}
                     {console.log(card)}
                     {loading ?
                         card.length > 0 ?
@@ -96,7 +95,8 @@ export default function Cards(props) {
                                 !c.place ? (c.place = '') : null,
                                 !c.offer?.includes("") ? (c.offer?.push("")) : null,
                                 c.region?.includes(props.sregion) && c.place?.includes(props.sPlace) && c.offer?.includes(props.sOffer) ?
-                                    <div >
+                                    <div>
+                                        
                                         {console.log('offer ', c.offer)}
                                         <Card
                                             key={index}
