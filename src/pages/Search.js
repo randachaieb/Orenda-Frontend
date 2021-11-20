@@ -19,6 +19,7 @@ const Search = (props) => {
             }
         })
             .then(res => {
+                console.log(res.data);
                 setSearchedResult(res.data)
             })
 
