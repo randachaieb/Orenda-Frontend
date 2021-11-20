@@ -12,7 +12,7 @@ const Search = (props) => {
     const history = useHistory()
     const [searchedResults, setSearchedResult] = React.useState([])
     React.useEffect(() => {
-        axios.get('http://localhost:5000/api/v1/user/search?q=ran', {
+        axios.get(`http://localhost:5000/api/v1/user/search?q=${context.search}`, {
             headers: {
                 'Content-Type': 'multipart/form-data;',
                 'x-auth-token': localStorage.getItem('token')
