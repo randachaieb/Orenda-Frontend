@@ -88,31 +88,31 @@ function Home() {
             }
         }
 
-        // if (event.target.value != '') {
-        //   //call with the id not the text
-        //   axios.get('http://localhost:5000/api/v1/categories/PlaceCategories/' + event.target.value)
-        //     .then(res => {
-        //       console.log(res.data.place)
-        //       if (res.data.place.length != 0) {
-        //         //this should be a get request with the id too
-        //         axios.patch('http://localhost:5000/api/v1/categories/update/' + res.data.place[0]._id)
-        //           .then(res => {
-        //             console.log(res.data)
+         if (event.target.value != '') {
+           //call with the id not the text
+           axios.get('http://localhost:5000/api/v1/categories/PlaceCategories/' + event.target.value)
+             .then(res => {
+               console.log(res.data.place)
+               if (res.data.place.length != 0) {
+                 //this should be a get request with the id too
+                 axios.patch('http://localhost:5000/api/v1/categories/update/' + res.data.place[0]._id)
+                   .then(res => {
+                     console.log(res.data)
 
-        //           });
-        //       }
-        //     });
-        // }
-        // setPlaces(event.target.value)
-        // let value = event.target.value.toLowerCase();
-        // let result = [];
-        // console.log(value);
-        // result = Categories.filter((data) => {
-        //   return data.name.toLowerCase().search(value) != -1;
-        // });
-        // setCategoriesFilter(result)
+                   });
+              }
+             });
+         }
+         setPlaces(event.target.value)
+         let value = event.target.value.toLowerCase();
+         let result = [];
+         console.log(value);
+         result = Categories.filter((data) => {
+           return data.name.toLowerCase().search(value) != -1;
+         });
+         setCategoriesFilter(result)
 
-        // console.log(result);
+         console.log(result);
 
     };
     const AllPlaces = (event) => {
@@ -256,12 +256,8 @@ function Home() {
                 {/* <Sidebar /> */}
 
                 <div className='container-card'>
-                    <br />  <br />  <br />  <br />  <br />
                     <div className="container box">
                         <div className=" category-search">
-
-
-
                             <div className='display'>
                                 <div className='category'>
                                     <input className='form-select' list="browsers2" name="byPlaces" id="browser" placeholder='Places By Category'
