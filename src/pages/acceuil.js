@@ -115,7 +115,8 @@ export default function Acceuil() {
                                                                         <iframe src={"http://localhost:5000" + d.link} height="500" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '50%' }} webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
                                                                     </div>
-                                                                    <div className="we-video-info">
+                                                                    {/*
+                                                                                                                                        <div className="we-video-info">
                                                                         <ul>
                                                                             <li>
                                                                                 <span className="comment" data-toggle="tooltip" title="Comments">
@@ -143,6 +144,8 @@ export default function Acceuil() {
 
                                                                         </ul>
                                                                     </div>
+
+                                                                    */}
                                                                 </div>
                                                             </div>
                                                             {/* comment area (should't rely on jquery) */}
