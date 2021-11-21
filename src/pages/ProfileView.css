@@ -43,9 +43,8 @@ body {
 
 .edit-profile{
   position: absolute;
-  bottom: 5px;
+  margin-top: 12px;
   right: 0px;
-  
 }
  
 
@@ -115,8 +114,11 @@ body {
   margin-right: 10px;
 }
 .profile-bio {
-  word-wrap: break-word;
-  width: 250px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
   text-align: center;
   font-size: 16px;
   font-weight: 400;
