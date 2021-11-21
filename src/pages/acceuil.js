@@ -44,6 +44,45 @@ export default function Acceuil() {
 
     }, []);
 
+    //New Empty Object To get Post Value
+    const [text, setText] = useState("");
+    const [link, setLink] = useState();
+
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+        //console.log(name, region, description, categoriesP, categoriesO, picture)
+        const params = new FormData();
+
+        params.append("text", text);
+        if (link)
+        {
+            params.append("link", link );
+        }
+
+
+        const token = localStorage.getItem('token');
+        console.log(token)
+        for (var value of params.values()) {
+            console.log(value);
+        }
+
+
+        axios.post('http://localhost:5000/api/v1/post',params, {
+            headers:{
+                'Content-Type': 'multipart/form-data',
+
+                'x-auth-token': localStorage.getItem('token')
+            }
+        })
+
+            .then((res)=> {
+                console.log('response posting article',res.data)
+                window.location.reload(false);
+            } ).catch(err => err.message);
+
+    }
+
 
 
     return (
@@ -69,17 +108,17 @@ export default function Acceuil() {
                                                 </figure>
                                                 <div className="newpst-input">
                                                     <form method="post">
-                                                        <textarea rows="2" placeholder="write something"></textarea>
+                                                        <textarea rows="2" placeholder="write something" onChange={(e)=>setText( e.target.value) }></textarea>
                                                         <div className="attachments">
                                                             <ul>
                                                                 <li>
                                                                     <i className="fa fa-image"></i>
                                                                     <label className="fileContainer">
-                                                                        <input type="file" />
+                                                                        <input type="file" onChange={(e)=>setLink( e.target.files[0]) }/>
                                                                     </label>
                                                                 </li>
                                                                 <li>
-                                                                    <button type="submit">Post</button>
+                                                                    <button type="submit" onClick={(e)=>handleSubmit(e)}>Post</button>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -200,7 +239,6 @@ export default function Acceuil() {
 
                                                 ))}
                                             </InfiniteScroll>
-
 
                                         </div>
                                     </div>
