@@ -12,10 +12,9 @@
 }
 
 .cards-display {
-    margin-top: 20px;
+    margin-top: 26px;
     display: flex;
     justify-content: center;
-    
     height: 100%;
     flex-wrap: wrap;
 }

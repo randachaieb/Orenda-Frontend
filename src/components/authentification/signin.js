@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { useHistory } from 'react-router'
 import { AuthContext } from '../../context/authContext';
-import avatar from '../../assets/avatar.png'
+import imageWelcome from '../../assets/imageWelcome.png'
 import axios from 'axios';
 import './auth.css'
 const Signin = ()=>{
@@ -33,22 +33,30 @@ const Signin = ()=>{
     }
 
    return( <div className='items'>
+       <div className='leftSideInfo' >
+           <img
+               src={imageWelcome}
+               className='imageWelcome'
+               alt="Login"
+           />
+       </div>
+
+       <div className="sloganText">
+           <div className="typing-demo">
+               Invisible Power Makes Visible Changes
+           </div>
+           <p className="paragraphTarget">
+               <div className="textTarget">
+                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a nisl congue, ultrices sem et, interdum libero. Sed id nisl ipsum.
+                   Pellentesque vitae pharetra leo, id cursus nisi.
+                   Suspendisse leo ligula, porta at arcu nec, interdum mattis sapien. Sed aliquet ornare finibus. Ut gravida lorem vel ornare mattis.
+               </div>
+           </p>
+       </div>
+
     <div className='card-signin' >
       
       <div className='card-content'>
-        
-         
-            <div className=' avt'>
-                 <div className='av-align'>
-            <img
-        src={avatar}
-        className='avatar'
-        alt="Login"
-        width={110}
-        height={110}
-      />
-      </div>
-      </div> 
       <div className='mrg'>
             <label className='center' >Log in to your account </label>
             
