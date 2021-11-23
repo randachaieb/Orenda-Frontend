@@ -85,21 +85,19 @@
 
 .card-signup {
     position: relative;
-    margin-top: 80px;
     background-color: var(--card-bg);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 600px;
-    width: 800px;
+    width: 550px;
     box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-    padding: 24px 32px 32px;
     border-radius: 8px;
 }
 
 .inputs {
     margin: 10px;
-    margin-left: 25%;
+    margin-left: 17%;
 }
 
 .space-between {
@@ -232,6 +230,60 @@ label {
 
 .btn-login:hover {
     background-color: #be781d;
+}
+.imageCreator {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    cursor: default;
+}
+
+.imageCreatorCto {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    cursor: default;
+    border: 1px solid #e5ecf3;
+}
+
+
+.cardsCreator {
+    background: white;
+    margin-bottom: 2em;
+}
+
+.cardAuthor a {
+    color: black;
+    text-decoration: none;
+}
+
+.card-content {
+    padding: 1.4em;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    margin-bottom: .5em;
+    font-weight: bold;
+}
+
+.card-content p {
+    font-size: 80%;
+}
+
+/* Flexbox stuff */
+
+.cardsCreator {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50vw;
+    left: 0;
+    margin-right: 30px;
+}
+
+.cardAuthor {
+    flex: 0 1 24%;
 }
 
 @media only screen and (max-width: 820px) {

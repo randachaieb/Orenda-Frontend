@@ -2,8 +2,10 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router'
 import axios from "axios"
-import avatar from '../../assets/avatar.png'
 import './auth.css'
+import manCeo from "../../assets/manCeo.jpg";
+import manCto from "../../assets/manCto.jpg";
+import womanManager from "../../assets/womanManager.jpg";
 
 const Signup = ()=>{
     const[ name, setName]= useState('');
@@ -39,20 +41,57 @@ const Signup = ()=>{
                 })};
 
    return( <div className='items'>
+       <div className="centered">
+           <section className="cardsCreator">
+               <article className="cardAuthor">
+                   <a href="#">
+                       <picture className="thumbnail">
+                           <img src={manCeo}
+                                class="imageCreator"
+                                alt="A banana that looks like a bird" />
+                       </picture>
+                       <div className="card-content">
+                           <h2>Vacation Image 01</h2>
+                           <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify
+                               kpis but market-facing.</p>
+                       </div>
+                   </a>
+               </article>
+               <article className="cardAuthor">
+                   <a href="#">
+                       <picture className="thumbnail">
+                           <img src={manCto}
+                                class="imageCreatorCto"
+                                alt="Norwegian boller"/>
+                       </picture>
+                       <div className="card-content">
+                           <h2>Vacation Image 02</h2>
+                           <p>Staff engagement synergize productive mindfulness and waste of resources cross sabers, or
+                               forcing function shotgun approach drink the Kool-aid.</p>
+                           <p>Execute are we in agreeance what do you feel you would bring to the table if you were
+                               hired for this position, nor closer to the metal goalposts, are there any leftovers in
+                               the kitchen?.</p>
+                       </div>
+                   </a>
+               </article>
+               <article className="cardAuthor">
+                   <a href="#">
+                       <picture className="thumbnail">
+                           <img src={womanManager}
+                                class="imageCreator"
+                                alt="A dinosaur wearing an aluminium jacket"/>
+                       </picture>
+                       <div className="card-content">
+                           <h2>Vacation Image 03</h2>
+                           <p>Viral engagement anti-pattern back of the net, for meeting assassin horsehead offer. Loop
+                               back design thinking drop-dead date. </p>
+                       </div>
+                   </a>
+               </article>
+           </section>
+       </div>
     <div className='card-signup' >
         <div className='card-content'>
-          
-            <div className='avt'>
-                 <div className='av-align'>
-            <img
-        src={avatar}
-        className='avatar'
-        alt="Login"
-        width={110}
-        height={110}
-      />
-      </div>
-      </div> 
       <div className='mrg'>
             <label className='center' >Create an account</label>
             </div>
