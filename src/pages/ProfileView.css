@@ -153,3 +153,36 @@ body {
 .input-cover[type="file"] {
   display: none;
 }
+
+.member-card {
+  border: 1px solid #babfc5;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.member-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.img-thumbnail {
+  width: 100px;
+  height: 100px;
+}
+.avatarCardSearch {
+  margin-top: -7rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.card-img-profile-top {
+  height: 143px;
+  display: flex;
+  width: 305px;
+  justify-content: center;
+  object-fit: cover;
+  background-size: cover;
+  width: 100%;
+}
+
+.searchProfileName {
+  margin-top:20px;
+}

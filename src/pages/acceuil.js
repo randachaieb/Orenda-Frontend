@@ -150,7 +150,7 @@ export default function Acceuil() {
                                                                 </figure>
                                                                 <div className="friend-name">
                                                                     <ins><Link to={`/user/${d.user_id._id}`} title="">{d.user_id.name}</Link></ins>
-                                                                    <span>published: { formatDate(d.Date_creation)}</span>
+                                                                    <span>{ formatDate(d.Date_creation)}</span>
                                                                 </div>
                                                                 <div className="post-meta">
                                                                     <div >
