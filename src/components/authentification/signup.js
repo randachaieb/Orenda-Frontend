@@ -52,8 +52,7 @@ const Signup = ()=>{
                        </picture>
                        <div className="card-content">
                            <h2>Vacation Image 01</h2>
-                           <p>TUX re-inventing the wheel, and move the needle. Feature creep dogpile that but diversify
-                               kpis but market-facing.</p>
+                           <p>Find or post  places and offers.</p>
                        </div>
                    </a>
                </article>
@@ -66,11 +65,7 @@ const Signup = ()=>{
                        </picture>
                        <div className="card-content">
                            <h2>Vacation Image 02</h2>
-                           <p>Staff engagement synergize productive mindfulness and waste of resources cross sabers, or
-                               forcing function shotgun approach drink the Kool-aid.</p>
-                           <p>Execute are we in agreeance what do you feel you would bring to the table if you were
-                               hired for this position, nor closer to the metal goalposts, are there any leftovers in
-                               the kitchen?.</p>
+                           <p>Being exposed to a huge network of creative People.</p>
                        </div>
                    </a>
                </article>
@@ -83,8 +78,7 @@ const Signup = ()=>{
                        </picture>
                        <div className="card-content">
                            <h2>Vacation Image 03</h2>
-                           <p>Viral engagement anti-pattern back of the net, for meeting assassin horsehead offer. Loop
-                               back design thinking drop-dead date. </p>
+                           <p>Have fun wihle exploring New places, offers and people.</p>
                        </div>
                    </a>
                </article>

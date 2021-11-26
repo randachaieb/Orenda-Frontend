@@ -47,9 +47,7 @@ const Signin = ()=>{
            </div>
            <p className="paragraphTarget">
                <div className="textTarget">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla a nisl congue, ultrices sem et, interdum libero. Sed id nisl ipsum.
-                   Pellentesque vitae pharetra leo, id cursus nisi.
-                   Suspendisse leo ligula, porta at arcu nec, interdum mattis sapien. Sed aliquet ornare finibus. Ut gravida lorem vel ornare mattis.
+                   Orenda is a network that brings together places and offers you would never want to miss
                </div>
            </p>
        </div>
