@@ -4,7 +4,8 @@
     justify-content: right;
     align-items: center;
     min-height: 100vh;
-    margin-right: 20px;
+    margin-right: 280px;
+    margin-top: -80px;
 }
 .sloganText {
     margin-right: 150px;
@@ -22,7 +23,6 @@
     animation: typing 2s steps(22), blink .5s step-end infinite alternate;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 3px solid;
     font-family: monospace;
     font-size: 2em;
 }
@@ -58,9 +58,14 @@
     overflow: hidden;
     word-break: keep-all;
 }
+.orendaStyle {
+    color: #000000d9;
+}
+.orendaStyle:hover{
+    color: #000000d9;
+}
 .card-content {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
@@ -236,14 +241,11 @@ label {
     height: 200px;
     border-radius: 50%;
     cursor: default;
+    border: 1px solid #babfc5;
 }
 
-.imageCreatorCto {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    cursor: default;
-    border: 1px solid #e5ecf3;
+.textOffers {
+    font-size: 14pt;
 }
 
 
@@ -267,9 +269,6 @@ label {
     font-weight: bold;
 }
 
-.card-content p {
-    font-size: 80%;
-}
 
 /* Flexbox stuff */
 

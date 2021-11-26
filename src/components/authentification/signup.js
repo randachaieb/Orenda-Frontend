@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { useHistory } from 'react-router'
 import axios from "axios"
 import './auth.css'
-import manCeo from "../../assets/manCeo.jpg";
-import manCto from "../../assets/manCto.jpg";
-import womanManager from "../../assets/womanManager.jpg";
+import connecting from "../../assets/connecting.jpg";
+import exploring from "../../assets/exploring.jpg";
+import deals from "../../assets/deals.jpg";
 
 const Signup = ()=>{
     const[ name, setName]= useState('');
@@ -46,39 +46,39 @@ const Signup = ()=>{
                <article className="cardAuthor">
                    <a href="#">
                        <picture className="thumbnail">
-                           <img src={manCeo}
-                                class="imageCreator"
-                                alt="A banana that looks like a bird" />
+                           <img src={deals}
+                                className="imageCreator"
+                                alt="deals" />
                        </picture>
                        <div className="card-content">
-                           <h2>Vacation Image 01</h2>
-                           <p>Find or post  places and offers.</p>
+                           <h3>Announcement & Deals</h3>
+                           <p className="textOffers">Find or post  places and offers.</p>
                        </div>
                    </a>
                </article>
                <article className="cardAuthor">
                    <a href="#">
                        <picture className="thumbnail">
-                           <img src={manCto}
-                                class="imageCreatorCto"
-                                alt="Norwegian boller"/>
+                           <img src={connecting}
+                                className="imageCreator"
+                                alt="connecting"/>
                        </picture>
                        <div className="card-content">
-                           <h2>Vacation Image 02</h2>
-                           <p>Being exposed to a huge network of creative People.</p>
+                           <h3>Communication</h3>
+                           <p className="textOffers">Being exposed to a huge network of creative People.</p>
                        </div>
                    </a>
                </article>
                <article className="cardAuthor">
                    <a href="#">
                        <picture className="thumbnail">
-                           <img src={womanManager}
-                                class="imageCreator"
-                                alt="A dinosaur wearing an aluminium jacket"/>
+                           <img src={exploring}
+                                className="imageCreator"
+                                alt="exploring"/>
                        </picture>
                        <div className="card-content">
-                           <h2>Vacation Image 03</h2>
-                           <p>Have fun wihle exploring New places, offers and people.</p>
+                           <h3>Discovery</h3>
+                           <p className="textOffers">Have fun while exploring New places, offers and people.</p>
                        </div>
                    </a>
                </article>

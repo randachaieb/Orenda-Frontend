@@ -33,23 +33,15 @@ const Signin = ()=>{
     }
 
    return( <div className='items'>
-       <div className='leftSideInfo' >
-           <img
-               src={imageWelcome}
-               className='imageWelcome'
-               alt="Login"
-           />
-       </div>
-
        <div className="sloganText">
            <div className="typing-demo">
                Invisible Power Makes Visible Changes
            </div>
-           <p className="paragraphTarget">
-               <div className="textTarget">
-                   Orenda is a network that brings together places and offers you would never want to miss
-               </div>
-           </p>
+           <div className="paragraphTarget">
+               <p className="textTarget">
+                   Orenda is a network that brings together places and offers, you would never want to miss!
+               </p>
+           </div>
        </div>
 
     <div className='card-signin' >
