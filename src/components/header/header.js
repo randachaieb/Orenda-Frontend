@@ -39,8 +39,9 @@ function Header() {
                 {authContext.auth.token ? (
                     <>
                         <div className='search-b'>
-                            <h1 className="navbar-brand mb-0 h1">ORENDA</h1>
-
+                            <h1 className="navbar-brand mb-0 h1">
+                                <a href="/" className="orendaStyle">ORENDA</a>
+                            </h1>
                         </div>
                         <div className='search-nav'>
                             <SearchBox />

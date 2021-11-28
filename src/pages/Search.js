@@ -1,8 +1,9 @@
 import React from 'react';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import { AuthContext } from '../context/authContext'
+import { AuthContext } from '../context/authContext';
 import axios from 'axios';
+import cardBackground from '../assets/cardBackground.jpg';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
@@ -60,10 +61,11 @@ const Search = (props) => {
                         searchedResults.map(searchedResult => (
                             <div className="col-lg-4">
                                 <div className="text-center card-box">
-                                    <div className="member-card pt-2 pb-2">
-
-                                        <div className="thumb-lg member-thumb mx-auto"><img src={`http://localhost:5000${searchedResult.picture}`} className="rounded-circle img-thumbnail" alt="profile-image" /></div>
-                                        <div className="">
+                                    <div className="member-card pb-2">
+                                        <img className="card-img-profile-top"
+                                             src={cardBackground} />
+                                        <div className="avatarCardSearch thumb-lg member-thumb mx-auto"><img src={`http://localhost:5000${searchedResult.picture}`} className="rounded-circle img-thumbnail" alt="profile-image" /></div>
+                                        <div className="searchProfileName">
                                             <h4>{searchedResult.name}</h4>
                                         </div>
                                         <div className="mt-4">

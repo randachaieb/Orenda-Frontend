@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { useHistory } from 'react-router'
 import { AuthContext } from '../../context/authContext';
-import avatar from '../../assets/avatar.png'
+import imageWelcome from '../../assets/imageWelcome.png'
 import axios from 'axios';
 import './auth.css'
 const Signin = ()=>{
@@ -33,22 +33,20 @@ const Signin = ()=>{
     }
 
    return( <div className='items'>
+       <div className="sloganText">
+           <div className="typing-demo">
+               Invisible Power Makes Visible Changes
+           </div>
+           <div className="paragraphTarget">
+               <p className="textTarget">
+                   Orenda is a network that brings together places and offers, you would never want to miss!
+               </p>
+           </div>
+       </div>
+
     <div className='card-signin' >
       
       <div className='card-content'>
-        
-         
-            <div className=' avt'>
-                 <div className='av-align'>
-            <img
-        src={avatar}
-        className='avatar'
-        alt="Login"
-        width={110}
-        height={110}
-      />
-      </div>
-      </div> 
       <div className='mrg'>
             <label className='center' >Log in to your account </label>
             

@@ -83,6 +83,14 @@ export default function Acceuil() {
 
     }
 
+    const formatDate = (date) => {
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        let today = new Date(date);
+        return `${today.getDate()} ${monthNames[today.getMonth()]} , ${today.getHours()} : ${today.getMinutes()}`;
+    }
+
 
 
     return (
@@ -142,7 +150,7 @@ export default function Acceuil() {
                                                                 </figure>
                                                                 <div className="friend-name">
                                                                     <ins><Link to={`/user/${d.user_id._id}`} title="">{d.user_id.name}</Link></ins>
-                                                                    <span>published: {d.Date_creation}</span>
+                                                                    <span>{ formatDate(d.Date_creation)}</span>
                                                                 </div>
                                                                 <div className="post-meta">
                                                                     <div >
