@@ -8,31 +8,40 @@ import axios from 'axios'
 import "./cards.css";
 import { AuthContext } from "../../context/authContext";
 import { useHistory } from "react-router-dom";
+import {  Select } from 'antd';
+import { Modal, Button, Input } from 'antd';
+import {CategoriesPlaces} from "../sidebar/categories-query";
+const { Option } = Select;
+const { TextArea } = Input;
 export default function Card(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
+
     const open = Boolean(anchorEl);
     const authContext = useContext(AuthContext);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
+
     const close = () => {
         setAnchorEl(null);
     };
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        setShow(true)
+    }
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const history = useHistory();
     const deleteCard = (e, idC) => {
         e.preventDefault()
-        console.log(idC)
+
 
         const headers = {
             'Content-Type': 'Application/json',
             'x-auth-token': localStorage.getItem('token'),
         }
-        console.log(localStorage.getItem('token'))
-        axios.delete('http://localhost:5000/api/v1/card/delete',
+
+        axios.delete('http://localhost:5000/api/v1/card/card_delete',
             {
                 data: { "id": idC },
                 headers: {
@@ -43,14 +52,13 @@ export default function Card(props) {
         )
 
             .then((res) => {
-                console.log(res.data)
-                window.location.reload(false);
+                window.location.reload(true);
 
 
             }).catch(err => err.message);
 
     }
-    console.log('id user', authContext.user._id)
+
 
     const goToProfile = (e, id) => {
         if (id === authContext.user._id) {
@@ -59,9 +67,11 @@ export default function Card(props) {
         else { history.push(`/user/${id}`) }
     }
 
+
     return (
+
         <div className="card" style={{ margin: "20px" }}>
-            {authContext.user._id === props.user._id ?
+            {authContext.user._id === props.card.user._id ?
                 <div className="cards-dots">
                     <IconButton
                         aria-label="more"
@@ -92,57 +102,56 @@ export default function Card(props) {
                         <MenuItem onClick={close}>
                             <div className="UP_Menu_Item">
                                 <MenuItem onClick={handleShow}>Edit</MenuItem>
-                                <MenuItem onClick={e => deleteCard(e, props.id)}>Delete</MenuItem>
+                                <MenuItem onClick={(e) => {
+                                    deleteCard(e, props.card._id)
+                                }}>Delete</MenuItem>
                             </div>
                         </MenuItem>
                     </Menu>
                 </div> : null}
             {show ? <PopupForm handleClose={handleClose}
-                idCard={props.id}
-                nameCard={props.name}
-                regionCard={props.region}
-                placeCard={props.place}
-                offerCard={props.offer}
-                descriptionCard={props.description}
-                piCard={props.picture}
-                siteCard={props.website}
+                card={props.card}
+
+                               show={show}
+                               setShow={setShow}
             /> : null}
             <img
-                src={"http://localhost:5000" + props.picture}
+                src={"http://localhost:5000" + props.card.picture}
                 className="card-img-top"
                 alt="..."
             ></img>
-            <div className='user-name' onClick={e => goToProfile(e, props.user._id)}>
+            <div className='user-name' onClick={e => goToProfile(e, props.card.user._id)}>
                 <div className='content-user'>
-                    <img src={"http://localhost:5000" + props.user.picture}
+                    <img src={"http://localhost:5000" + props.card.user.picture}
                         className='avatar-user'
                     ></img>
-                    <span className='name'>{props.user.name}</span>
+                    <span className='name'>{props.card.user.name}</span>
                 </div>
             </div>
             <div className="card-body">
-                <h5 className="card-title">{props.name}</h5>
+                <h5 className="card-title">{props.card.name}</h5>
                 <div className="title-region">
                     {/* <h5>{props.category}</h5> */}
 
                     {props.place ?
-                        <span className='text-muted'>{props.place}</span> :
-                        props.offer.length > 0 || props.offer != '' ?
-                            <span className='text-muted'>{props.offer}</span> : null
+                        <span className='text-muted'>{props.card.place}</span> :
+                        props.card?.offer?.length > 0 || props.card?.offer != '' ?
+                            <span className='text-muted'>{props.card.OfferCategory?.name}</span> : null
                     }
                     <p className="text-muted">
                         <i className="mr bi-geo-alt-fill"></i>
-                        {props.region}
+                        {props.card.region}
                     </p>
                 </div>
-                {props.offer.length <= 3 ?
-                    <p className="card-text">{props.description.replace(/^(.{80}[^\s]*).*/, "$1")}</p> :
-                    <p className="card-text">{props.description.replace(/^(.{50}[^\s]*).*/, "$1")}</p>
+                <h6>Description:</h6>
+                {props.card.offer?.length <= 3 ?
+                    <p className="card-text">{props.card.description.replace(/^(.{80}[^\s]*).*/, "$1")}</p> :
+                    <p className="card-text">{props.card.description.replace(/^(.{50}[^\s]*).*/, "$1")}</p>
                 }
 
                 <div className="cat-offer">
-                    {props.offer.length > 0 && props.place ?
-                        props.offer.map(offer =>
+                    {props.card.offer?.length > 0 && props.card.place ?
+                        props.card.offer?.map(offer =>
                             offer != '' ?
                                 <span className='cat'>{offer}</span> : null)
                         : null
@@ -152,7 +161,7 @@ export default function Card(props) {
             </div>
             <div className='footer-c'>
                 <div className="bottom">
-                    <a className="links" target="_blank" rel="noopener noreferrer" href={props.website}> <i class="mr-2 bi-eye-fill"></i> view website</a>
+                    <a className="links" target="_blank" rel="noopener noreferrer" href={props.card.website}> <i class="mr-2 bi-eye-fill"></i> view website</a>
                 </div>
             </div>
 
@@ -161,18 +170,99 @@ export default function Card(props) {
 }
 
 // popup window
-const PopupForm = ({ handleClose, SubmitPost, idCard, nameCard, siteCard, regionCard, placeCard, offerCard, descriptionCard, piCard }) => {
+const PopupForm = ({ handleClose, SubmitPost,show,setShow,card }) => {
     //New Empty Object To get Post Value
 
-    const [name, setName] = useState(nameCard);
-    const [region, setRegion] = useState(regionCard);
-    const [categoriesO, setCategoriesO] = useState(offerCard);
+    const [name, setName] = useState(card.name);
+    const [region, setRegion] = useState(card.region);
+    const [categoriesO, setCategoriesO] = useState(card.CategoriesOffer);
     const [categories, setCategories] = useState([]);
-    const [categoriesP, setCategoriesP] = useState(placeCard);
-    const [description, setDescription] = useState(descriptionCard);
+    const [categoriesP, setCategoriesP] = useState(CategoriesPlaces);
+    const [description, setDescription] = useState(card.description);
     const [picture, setPicture] = useState();
-    const [site, setSite] = useState(siteCard);
+    const [site, setSite] = useState(card.website);
+    const [cardState, setCardState] = useState({});
+    React.useEffect(() => {
+        axios.get('http://localhost:5000/api/v1/categories/PlaceCategories')
+            .then(response => {
+                if (response.data.length > 0) {
+                    setCardState({...cardState,
+                        places: response.data
+                    })
+                }
+            })
+        axios.get('http://localhost:5000/api/v1/categories/offerCategories')
+            .then(response => {
+                if (response.data.length > 0) {
+                    setCardState({...cardState,
+                        offers: response.data
+                    })
+                }
+            });
 
+    }, []);
+
+   const handlechangeOffer = (event) => {
+        // console.log(event)
+        // axios.get('http://localhost:5000/api/v1/categories/offerCategories/' + event)
+        //     .then(res => {
+        //         console.log(res.data.subCategory)
+        //         // this.setState({
+        //         //     subcategoryOffers: res.data.subCategory,
+        //         //     offer: res.data._id
+        //         // })
+        //
+        //     });
+
+    }
+   const handlechangecategory = (event) => {
+
+        // axios.get('http://localhost:5000/api/v1/categories/PlaceCategories/' + event)
+        //     .then(res => {
+        //         console.log(res.data)
+        //         this.setState({
+        //             subcategoryPlaces: res.data.subCategory,
+        //             place: res.data._id
+        //         })
+        //
+        //     });
+        // this.setState({
+        //     subcategory: true
+        // })
+    }
+   const handleChangenamee = event => {
+     setName( event.target.value)
+
+    }
+   const handlechangeReg = event => {
+       setRegion( event.target.value)
+    }
+    const handlechangeDesc = event => {
+
+             setDescription(event.target.value)
+
+    }
+  const  handlechangeURL = event => {
+
+            setSite(event.target.value)
+
+    }
+   const  handleChangepicture = event => {
+        console.log(event.target.files[0])
+
+            setPicture(event.target.files[0])
+
+    }
+  const  handlechangesub = event => {
+
+      setCategories( event)
+
+
+    }
+  const  handlechangesuboffer = event => {
+       setCategoriesP(event)
+
+    }
 
     const handleSubmit = (e, idCard) => {
 
@@ -230,94 +320,66 @@ const PopupForm = ({ handleClose, SubmitPost, idCard, nameCard, siteCard, region
 
     return (
         <>
-            <div className="form-pop">
-                <div className="content">
-                    <button
-                        type="button"
-                        className="close btn-close"
-                        onClick={handleClose}
-                    />
-                    <input
-                        type="file"
-                        placeholder="enter img"
+            <Modal title="Add Card" onCancel={handleClose} visible={show} footer={[
+                <Button key="cancel" onClick={handleClose}>
+                    Cancel
+                </Button>,
+                <Button key="schedule" type="submit" onClick={handleSubmit}>Add</Button>
+            ]}>
+                <Input placeholder="Title" onChange={handleChangenamee} required /><br /><br />
+                <Input placeholder="Image" type='file' onChange={(e)=>handleChangepicture(e)} required /><br /><br />
+                {cardState? <Select defaultValue="select category" style={{ width: "100%" }} onChange={(e)=> handlechangecategory(e)} required>
+                    {cardState?.places?.map((data) => (
+                        <Option key={data._id} value={data._id} 	>{data.name}</Option>
+                    ))}
 
-                        onChange={(e) => setPicture(e.target.files[0])}
-                    />
-                    <label>Title</label>
-                    <input
-                        type="text"
-                        placeholder="enter title"
-                        className="input"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <div className="select-box">
-                        <select
-                            onChange={(e) => setCategoriesP(e.target.value)}
-                            value={categoriesP}
-                        >
-                            <option>Places By Category</option>
-                            <option value="Training centers">
-                                Training centers
-                            </option>
-                            <option value="Schools">Schools</option>
-                            <option value="Coworking places">
-                                Coworking places
-                            </option>
-                            <option value="Clubs">Clubs</option>
-                        </select>
-                        <select
-                            id="browsers3"
-                            aria-label="Default select example"
-                            onChange={(e) => setCategoriesO([...categoriesO, e.target.value])}
-                            value={categoriesO}
-                        >
-                            <option>Offers By Category</option>
-                            <option value="Scholarships">Scholarships</option>
-                            <option value="Job offers">Job offers</option>
-                            <option value="Competitions">Competitions</option>
-                            <option value="Events">Events</option>
-                        </select>
-                        <select onChange={(e) => setRegion(e.target.value)}
-                            value={region}
-                        >
-                            <option>Region</option>
-                            <option value="Tunis">Tunis</option>
-                            <option value="Sousse">Sousse</option>
-                            <option value="Sfax">Sfax</option>
-                            <option value="Monastir">Monastir</option>
-                        </select>
+                </Select>: null}
+               <br /><br />
+                {cardState?.places.subCategory ?
+                    <div>
+                        <Select mode="multiple"
+                                style={{ width: '100%' }}
+                                placeholder="Please select" style={{ width: "100%" }} onChange={handlechangesub} required>
+                            {cardState?.places.subcategoryPlaces.map((data) => (
+                                <Option key={data._id} value={data._id} 	>{data.name}</Option>
+                            ))}
+                        </Select>
+
+                        <br /><br />
                     </div>
-                    <div className='set-categories'>
-                        {categoriesO ?
-                            categoriesO.map((cat, index) =>
-                                cat != '' ?
-                                    <span className='catg' >{cat} <i className="bi bi-x ml" onClick={e => deleteCategory(e, index)}></i></span>
-                                    : null)
-                            : null}
-
-
+                    : null
+                }
+                {
+                    cardState?
+                    <Select defaultValue="Select Offer" style={{ width: "100%" }} onChange={(e)=>{handlechangeOffer(e)}} required>
+                        {cardState?.offers.map((data) => (
+                            <Option key={data._id} value={data._id} 	>{data.name}</Option>
+                        ))}
+                    </Select>:null
+                }
+               <br /><br />
+                {cardState && cardState?.offers.subCategory ?
+                    <div>
+                        <Select mode="multiple"
+                                style={{ width: '100%' }}
+                                placeholder="Please select" style={{ width: "100%" }} onChange={handlechangesuboffer} required>
+                            {cardState && cardState?.offers.map((data) => (
+                                <Option key={data._id} value={data._id} >{data.name}</Option>
+                            ))}
+                        </Select>
+                        <br /><br />
                     </div>
-                    <label>Description</label>
-                    <input
-                        type="text"
-                        value={description}
-                        placeholder="enter description"
-                        className="input"
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-
-                    <label>Website</label>
-                    <input
-                        type="text"
-                        placeholder="enter Web Site Url"
-                        className="input"
-                        value={site}
-                        onChange={(e) => setSite(e.target.value)}
-                    />
-                    <button className="button" onClick={e => handleSubmit(e, idCard)}>Edit</button>
-                </div>
-            </div>
+                    : null
+                }
+                <Select defaultValue="Sousse" style={{ width: "100%" }} onChange={handlechangeReg} required>
+                    <Option value="Tunis">Tunis</Option>
+                    <Option value="Sousse">Sousse</Option>
+                    <Option value="Sfax">Sfax</Option>
+                    <Option value="Monastir">Monastir</Option>
+                </Select><br /><br />
+                <Input placeholder="Enter description" onChange={handlechangeDesc} required /><br /><br />
+                <TextArea placeholder="Enter Web Site Url" onChange={handlechangeURL} item={card.website} required /><br /><br />
+            </Modal>
         </>
     );
-};
+}

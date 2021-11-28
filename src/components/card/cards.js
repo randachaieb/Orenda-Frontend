@@ -33,6 +33,7 @@ export default function Cards(props) {
     const putSearch = (e) => {
         e.preventDefault()
         setPage(page + 1)
+        console.log(page)
         window.scrollTo(0, 600)
 
     }
@@ -41,6 +42,7 @@ export default function Cards(props) {
     const putSearchP = (e) => {
         e.preventDefault()
         setPage(page - 1)
+        console.log(page)
         window.scrollTo(0, 600)
 
     }
@@ -48,7 +50,7 @@ export default function Cards(props) {
 
 
 
-    useEffect(async () => {
+    useEffect( () => {
 
         axios.get("http://localhost:5000/api/v1/card/all?page=" + page, {
             headers: {
@@ -68,7 +70,7 @@ export default function Cards(props) {
                 setCard(data)
 
 
-            }).catch(err => err.message)
+            }).catch(err => console.log(err.message))
 
 
     }, [page])
@@ -82,40 +84,37 @@ export default function Cards(props) {
     const items = card.slice(0, limit);
 
 
+
     //console.log(search)
     return (
         <div >
             <div className='items-c'>
 
                 <div className='cards-display'>
-                    {console.log(card)}
-                    {loading ?
+
+                    {
+                        loading && card.length > 0 ?
                         card.length > 0 ?
-                            card.map((c, index) => (
-                                !c.place ? (c.place = '') : null,
-                                !c.offer?.includes("") ? (c.offer?.push("")) : null,
-                                c.region?.includes(props.sregion) && c.place?.includes(props.sPlace) && c.offer?.includes(props.sOffer) ?
-                                    <div>
-                                        
-                                        {console.log('offer ', c.offer)}
-                                        <Card
-                                            key={index}
-                                            id={c._id}
-                                            place={c.place}
-                                            offer={c.offer}
-                                            website={c.website}
-                                            region={c.region}
-                                            picture={c.picture}
-                                            name={c.name}
-                                            description={c.description}
-                                            user={c.user}
+                            card.map((c, index) => {
 
-                                        /> </div> : null
+                                return(
 
-                            )) : <h1>Cards not found</h1> :
-                        <div className='cards-display'>
+                                            <div>
+
+                                                <Card
+                                                    key={index}
+                                                    card={c}
+
+                                                /></div>
+
+                                )
+
+                            }) :( <h1>Cards not found</h1>) :
+                       ( <div className='cards-display'>
                             <Loader />
-                        </div>
+                        </div>)
+
+
                     }
 
                 </div>
@@ -125,12 +124,16 @@ export default function Cards(props) {
             <div className='pagination'>
                 {
                     page != 0 ?
-                        <button className='btn-pag mr-5' onClick={e => putSearchP(e)}><i class="bi bi-chevron-left"></i></button> : null
+                        <button className='btn-pag mr-5' onClick={(e )=> {
+                            putSearchP(e)
+                        }}><i class="bi bi-chevron-left"></i></button> : null
                 }
 
                 {
                     card.length == 20 ?
-                        <button className='btn-pag-next' onClick={e => putSearch(e)}><i class="bi bi-chevron-right"></i></button> : null}
+                        <button className='btn-pag-next' onClick={(e) => {
+                            putSearch(e)
+                        }}><i class="bi bi-chevron-right"></i></button> : null}
             </div>
 
         </div>

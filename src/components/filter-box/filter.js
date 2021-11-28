@@ -66,24 +66,26 @@ class PopupForm extends React.Component {
         this.setState({ isModalVisible: false })
     };
     handlechangeOffer = (event) => {
-        axios.get('http://localhost:5000/api/v1/categories/offerCategoriesSub/' + event)
+        console.log(event)
+        axios.get('http://localhost:5000/api/v1/categories/offerCategories/' + event)
             .then(res => {
-                console.log(res.data[0].subCategory)
+                console.log(res.data.subCategory)
                 this.setState({
-                    subcategoryOffers: res.data[0].subCategory,
-                    offer: res.data[0]._id
+                    subcategoryOffers: res.data.subCategory,
+                    offer: res.data._id
                 })
 
             });
 
     }
     handlechangecategory = (event) => {
-        axios.get('http://localhost:5000/api/v1/categories/PlaceCategoriesSub/' + event)
+        console.log(event)
+        axios.get('http://localhost:5000/api/v1/categories/PlaceCategories/' + event)
             .then(res => {
                 console.log(res.data)
                 this.setState({
-                    subcategoryPlaces: res.data[0].subCategory,
-                    place: res.data[0]._id
+                    subcategoryPlaces: res.data.subCategory,
+                    place: res.data._id
                 })
 
             });
@@ -112,8 +114,9 @@ class PopupForm extends React.Component {
         })
     }
     handleChangepicture = event => {
+        console.log(event.target.files[0])
         this.setState({
-            picture: event.target.value
+            picture: event.target.files[0]
         })
     }
     handlechangesub = event => {
@@ -130,6 +133,7 @@ class PopupForm extends React.Component {
     }
     formSubmit(event) {
         event.preventDefault();
+        console.log(this.state)
         const params = new FormData();
 
         params.append("name", this.state.namee);
@@ -140,6 +144,7 @@ class PopupForm extends React.Component {
         params.append("OfferCategory", this.state.offer);
         params.append("domain", [...this.state.subcateg, this.state.subcategoffer]);
         params.append("picture", this.state.picture);
+
         axios.post('http://localhost:5000/api/v1/card', params, {
             headers: {
                 'Content-Type': 'multipart/form-data;',
@@ -150,8 +155,10 @@ class PopupForm extends React.Component {
             .then(res => {
                 console.log(res.data)
 
+
             });
         this.setState({ isModalVisible: false })
+
     }
     render() {
         return (
@@ -166,10 +173,10 @@ class PopupForm extends React.Component {
                     <Button key="schedule" type="submit" onClick={this.formSubmit}>Add</Button>
                 ]}>
                     <Input placeholder="Title" onChange={this.handleChangenamee} required /><br /><br />
-                    <Input placeholder="Image" type='file' onChange={this.handleChangepicture} required /><br /><br />
-                    <Select defaultValue="select category" style={{ width: "100%" }} onChange={this.handlechangecategory} required>
+                    <Input placeholder="Image" type='file' onChange={(e)=>this.handleChangepicture(e)} required /><br /><br />
+                    <Select defaultValue="select category" style={{ width: "100%" }} onChange={(e)=> this.handlechangecategory(e)} required>
                         {this.state.data.map((data) => (
-                            <Option key={data._id} value={data.name} 	>{data.name}</Option>
+                            <Option key={data._id} value={data._id} 	>{data.name}</Option>
                         ))}
 
                     </Select><br /><br />
@@ -185,11 +192,11 @@ class PopupForm extends React.Component {
 
                             <br /><br />
                         </div>
-                        : ''
+                        : null
                     }
-                    <Select defaultValue="Select Offer" style={{ width: "100%" }} onChange={this.handlechangeOffer} required>
+                    <Select defaultValue="Select Offer" style={{ width: "100%" }} onChange={(e)=>{this.handlechangeOffer(e)}} required>
                         {this.state.offers.map((data) => (
-                            <Option key={data._id} value={data.name} 	>{data.name}</Option>
+                            <Option key={data._id} value={data._id} 	>{data.name}</Option>
                         ))}
                     </Select><br /><br />
                     {this.state.subcategoryOffers ?
@@ -203,7 +210,7 @@ class PopupForm extends React.Component {
                             </Select>
                             <br /><br />
                         </div>
-                        : ''
+                        : null
                     }
                     <Select defaultValue="Sousse" style={{ width: "100%" }} onChange={this.handlechangeReg} required>
                         <Option value="Tunis">Tunis</Option>
