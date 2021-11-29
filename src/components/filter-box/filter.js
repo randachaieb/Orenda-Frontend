@@ -142,7 +142,7 @@ class PopupForm extends React.Component {
         params.append("website", this.state.website);
         params.append("PlaceCategory", this.state.place);
         params.append("OfferCategory", this.state.offer);
-        params.append("domain", [...this.state.subcateg, this.state.subcategoffer]);
+        //params.append("domain", [...this.state.subcateg, this.state.subcategoffer]); to get it soon
         params.append("picture", this.state.picture);
 
         axios.post('http://localhost:5000/api/v1/card', params, {
@@ -180,6 +180,7 @@ class PopupForm extends React.Component {
                         ))}
 
                     </Select><br /><br />
+                    { /* to get it soon
                     {this.state.subcategoryPlaces ?
                         <div>
                             <Select mode="multiple"
@@ -194,11 +195,14 @@ class PopupForm extends React.Component {
                         </div>
                         : null
                     }
+                   */}
                     <Select defaultValue="Select Offer" style={{ width: "100%" }} onChange={(e)=>{this.handlechangeOffer(e)}} required>
                         {this.state.offers.map((data) => (
                             <Option key={data._id} value={data._id} 	>{data.name}</Option>
                         ))}
                     </Select><br /><br />
+                    { /* to get it soon
+
                     {this.state.subcategoryOffers ?
                         <div>
                             <Select mode="multiple"
@@ -212,6 +216,7 @@ class PopupForm extends React.Component {
                         </div>
                         : null
                     }
+                */}
                     <Select defaultValue="Sousse" style={{ width: "100%" }} onChange={this.handlechangeReg} required>
                         <Option value="Tunis">Tunis</Option>
                         <Option value="Sousse">Sousse</Option>

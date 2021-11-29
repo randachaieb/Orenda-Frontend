@@ -159,7 +159,7 @@ export default function Acceuil() {
                                                                             {d.text}
 
                                                                         </p>
-                                                                        <iframe src={"http://localhost:5000" + d.link} height="500" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', width: '50%' }} webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                                                                        <iframe src={"http://localhost:5000" + d.link} height="500" style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto'}} webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
                                                                     </div>
                                                                     {/*
