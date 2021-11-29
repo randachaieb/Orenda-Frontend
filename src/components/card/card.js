@@ -136,7 +136,7 @@ export default function Card(props) {
                     {props.place ?
                         <span className='text-muted'>{props.card.place}</span> :
                         props.card?.offer?.length > 0 || props.card?.offer != '' ?
-                            <span className='text-muted'>{props.card.OfferCategory?.name}</span> : null
+                            <span className='text-muted'>{props.card.PlaceCategory?.name}</span> : null
                     }
                     <p className="text-muted">
                         <i className="mr bi-geo-alt-fill"></i>
